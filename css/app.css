@@ -17,7 +17,6 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/egg.jpg'); /* Background pattern from Subtle Patterns */
     font-family: 'Cambay', sans-serif;
 }
 
@@ -29,7 +28,7 @@ body {
 }
 
 h1 {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /*
