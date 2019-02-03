@@ -1,8 +1,10 @@
 /*
  * A list that holds all of cards in deck
  */
+ let allCards = [];
 
- let values = [];
+ // a list that holds all opened cards
+ let flippedCards = [];
 
 /*
  * Display the cards on the page
@@ -30,10 +32,22 @@ const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
     const elementClicked = event.target;
     if (elementClicked.classList.contains('card')) {
-    elementClicked.classList.toggle('open');
-    elementClicked.classList.toggle('show');
+        flipCard(elementClicked);
+        addFlippedCard(elementClicked);
     }
 });
+
+// function to flip card
+function flipCard(elementClicked) {
+    elementClicked.classList.toggle('open');
+    elementClicked.classList.toggle('show');
+}
+
+// function to add flipped card to flippedCards list
+function addFlippedCard(elementClicked) {
+    flippedCards.push(elementClicked);
+}
+
 /*
  * shuffle the cards when the user clicks shuffle button
  */
