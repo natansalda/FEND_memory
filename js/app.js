@@ -1,7 +1,14 @@
 /*
  * A list that holds all of cards in deck
  */
-const values = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', 'fa-cube'];
+const values = ['fa-utensils', 'fa-utensils',
+                'fa-hamburger', 'fa-hamburger',
+                'fa-cookie-bite', 'fa-cookie-bite',
+                'fa-cookie', 'fa-cookie',
+                'fa-apple-alt', 'fa-apple-alt',
+                'fa-carrot', 'fa-carrot',
+                'fa-fish', 'fa-fish',
+                'fa-lemon', 'fa-lemon'];
 
 /*
  * Display the cards on the page
@@ -12,7 +19,7 @@ const values = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cu
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -29,8 +36,8 @@ function shuffle(array) {
 /*
  * shuffle the cards when the user clicks shuffle button
  */
- const shuffleButton = document.querySelector('.restart');
- shuffleButton.addEventListener('click', shuffle(values));
+const shuffleButton = document.querySelector('.restart');
+shuffleButton.addEventListener('click', shuffle(values));
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -43,11 +50,19 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- const cardClickedListener = document.querySelector('.card').addEventListener('click', cardClicked());
+const deck = document.querySelectorAll('.deck');
+deck.addEventListener('click', event => {
+	const itemClicked = event.target;
+	if (itemClicked.classList.contains('.card')) {
+		console.log("You have clicked the card!");
+	}
+});
 
- function cardClicked() {
- 	console.log("Card has been clicked");
- };
+ // const cardClickedListener = document.querySelectorAll('.card').addEventListener('click', cardClicked());
+
+ // function cardClicked() {
+ // 	console.log("Card has been clicked");
+ // };
 
 
 
