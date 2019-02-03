@@ -1,17 +1,8 @@
-/*
- * A list that holds all of cards in deck
- */
+//  A list that holds all of cards in deck
  let allCards = [];
 
  // a list that holds all opened cards
  let flippedCards = [];
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -23,18 +14,28 @@ function shuffle(array) {
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
-        console.log("YAY!")
     }
     return array;
 };
 
+// function to shuffle the whole deck
+function shuffleCards() {
+    const cardsInDeck = Array.from(document.querySelectorAll('.deck li'))
+    console.log('Cards to shuffle', cardsInDeck);
+    const shuffledCards = shuffle(cardsInDeck);
+    console.log('Shuffled cards', shuffleCards);
+}
+shuffleCards()
+
+// we add listener to all cards in the deck
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
+    // and now we add the logic when card is clicked
     const elementClicked = event.target;
     if (isProperClick(elementClicked)) {
         flipCard(elementClicked);
         addFlippedCard(elementClicked);
-        // now it is time to check if our 2 cards match
+        // now it is time to check if our 2 cards match each other
         if (flippedCards.length === 2) {
             checkCardsMatch(elementClicked);
         }
@@ -89,8 +90,8 @@ function checkCardsMatch() {
 /*
  * shuffle the cards when the user clicks shuffle button
  */
-//const shuffleButton = document.querySelector('.restart');
-//shuffleButton.addEventListener('click', shuffle(values));
+const shuffleButton = document.querySelector('.restart');
+shuffleButton.addEventListener('click', shuffleCards());
 
 /*
  * set up the event listener for a card. If a card is clicked:
