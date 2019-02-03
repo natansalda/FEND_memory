@@ -1,14 +1,8 @@
 /*
  * A list that holds all of cards in deck
  */
-const values = ['fa-utensils', 'fa-utensils',
-                'fa-hamburger', 'fa-hamburger',
-                'fa-cookie-bite', 'fa-cookie-bite',
-                'fa-cookie', 'fa-cookie',
-                'fa-apple-alt', 'fa-apple-alt',
-                'fa-carrot', 'fa-carrot',
-                'fa-fish', 'fa-fish',
-                'fa-lemon', 'fa-lemon'];
+
+ let values = [];
 
 /*
  * Display the cards on the page
@@ -32,14 +26,14 @@ function shuffle(array) {
     return array;
 };
 
-// select all cards, and handle clicks on them
-const cards = document.querySelectorAll('.card');
-for (card of cards) {
-    card.addEventListener('click', function() {
-    console.log("Karta");
+const deck = document.querySelector('.deck');
+deck.addEventListener('click', event => {
+    const elementClicked = event.target;
+    if (elementClicked.classList.contains('card')) {
+    elementClicked.classList.toggle('open');
+    elementClicked.classList.toggle('show');
+    }
 });
-}
-
 /*
  * shuffle the cards when the user clicks shuffle button
  */
