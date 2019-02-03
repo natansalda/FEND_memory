@@ -31,17 +31,26 @@ function shuffle(array) {
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
     const elementClicked = event.target;
-    if (elementClicked.classList.contains('card') &&
-    // we only want 2 flipped cards at a time
-    flippedCards.length < 2) {
+    if (isProperClick(elementClicked)) {
         flipCard(elementClicked);
         addFlippedCard(elementClicked);
         // now it is time to check if our 2 cards match
         if (flippedCards.length === 2) {
-            checkCardsMatch();
+            checkCardsMatch(elementClicked);
         }
     }
 });
+
+// function making sure we only handle proper clicks
+function isProperClick(elementClicked) {
+    return (
+        elementClicked.classList.contains('card') &&
+        // let's make sure we don't count already matched cards
+        !elementClicked.classList.contains('match') &&
+         // we only want 2 flipped cards at a time and those needs to be 2 different cards
+         flippedCards.length < 2 && !flippedCards.includes(elementClicked)
+    );
+}
 
 // function to flip card
 function flipCard(elementClicked) {
