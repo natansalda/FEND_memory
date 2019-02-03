@@ -32,12 +32,19 @@ function shuffle(array) {
     return array;
 };
 
+// select all cards, and handle clicks on them
+const cards = document.querySelectorAll('.card');
+for (card of cards) {
+    card.addEventListener('click', function() {
+    console.log("Karta");
+});
+}
 
 /*
  * shuffle the cards when the user clicks shuffle button
  */
-const shuffleButton = document.querySelector('.restart');
-shuffleButton.addEventListener('click', shuffle(values));
+//const shuffleButton = document.querySelector('.restart');
+//shuffleButton.addEventListener('click', shuffle(values));
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -50,19 +57,14 @@ shuffleButton.addEventListener('click', shuffle(values));
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const deck = document.querySelectorAll('.deck');
-deck.addEventListener('click', event => {
-	const itemClicked = event.target;
-	if (itemClicked.classList.contains('.card')) {
-		console.log("You have clicked the card!");
-	}
-});
+//function eventFunction() {
+//    const itemClicked = event.target;
+//	    if (itemClicked.classList.contains('.card')) {
+//		    console.log("You have clicked the card!");
+//};
+//const deck = document.querySelectorAll('.deck');
+//deck.addEventListener('click', eventFunction);
 
- // const cardClickedListener = document.querySelectorAll('.card').addEventListener('click', cardClicked());
-
- // function cardClicked() {
- // 	console.log("Card has been clicked");
- // };
 
 
 
