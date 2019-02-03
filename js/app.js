@@ -31,9 +31,15 @@ function shuffle(array) {
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
     const elementClicked = event.target;
-    if (elementClicked.classList.contains('card')) {
+    if (elementClicked.classList.contains('card') &&
+    // we only want 2 flipped cards at a time
+    flippedCards.length < 2) {
         flipCard(elementClicked);
         addFlippedCard(elementClicked);
+        // now it is time to check if our 2 cards match
+        if (flippedCards.length === 2) {
+            checkCardsMatch();
+        }
     }
 });
 
@@ -46,6 +52,29 @@ function flipCard(elementClicked) {
 // function to add flipped card to flippedCards list
 function addFlippedCard(elementClicked) {
     flippedCards.push(elementClicked);
+}
+
+// function to check if 2 cards match
+function checkCardsMatch() {
+    // do the cards classes match (font awesome)?
+    if (
+        flippedCards[0].firstElementChild.className ===
+        flippedCards[1].firstElementChild.className
+    ) {
+        // yes they do, so they need to stay as matched
+        flippedCards[0].classList.toggle('match');
+        flippedCards[1].classList.toggle('match');
+        // and we clear the list
+        flippedCards = []
+    } else {
+        // to see both cards we need to setTimeOut
+        setTimeout(() => {
+            // cards don't match so we flip them back and clear the list
+            flipCard(flippedCards[0]);
+            flipCard(flippedCards[1]);
+            flippedCards = [];
+        }, 1000);
+     }
 }
 
 /*
