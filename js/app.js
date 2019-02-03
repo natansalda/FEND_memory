@@ -1,8 +1,11 @@
-//  A list that holds all of cards in deck
- let allCards = [];
+// a list that holds all opened cards
+let flippedCards = [];
 
- // a list that holds all opened cards
- let flippedCards = [];
+// we save a deck into a variable
+const deck = document.querySelector('.deck');
+
+// we save an array of cards to shuffle into a variable
+const cardsInDeck = Array.from(document.querySelectorAll('.card'));
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -20,15 +23,15 @@ function shuffle(array) {
 
 // function to shuffle the whole deck
 function shuffleCards() {
-    const cardsInDeck = Array.from(document.querySelectorAll('.deck li'))
-    console.log('Cards to shuffle', cardsInDeck);
     const shuffledCards = shuffle(cardsInDeck);
-    console.log('Shuffled cards', shuffleCards);
+    // we append newly shuffled cards to the deck
+    for (card of shuffledCards) {
+        deck.appendChild(card);
+    }
 }
 shuffleCards()
 
 // we add listener to all cards in the deck
-const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
     // and now we add the logic when card is clicked
     const elementClicked = event.target;
