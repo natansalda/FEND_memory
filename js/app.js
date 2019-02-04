@@ -50,7 +50,9 @@ deck.addEventListener('click', event => {
         if (flippedCards.length === 2) {
             checkCardsMatch(elementClicked);
             // add a move to move counter
-            addMovesNumber();
+            countMovesNumber();
+            // show proper number of stars
+            showStars();
         }
     }
 });
@@ -100,12 +102,29 @@ function checkCardsMatch() {
      }
 }
 
-function addMovesNumber() {
+function countMovesNumber() {
     moves++;
     const numberOfMovesText = document.querySelector('.moves');
     numberOfMovesText.innerHTML = moves;
 }
 
+function showStars() {
+    if (moves === 12) {
+        hideOneStar();
+    } else if (moves === 20) {
+        hideOneStar();
+    }
+}
+
+function hideOneStar() {
+    const starsList = document.querySelectorAll('.stars li'); // change to fa-star
+    for (star of starsList) {
+        if (star.style.display !== 'none') {
+            star.style.display = 'none';
+            break;
+        }
+    }
+}
 
 /*
  * shuffle the cards when the user clicks shuffle button

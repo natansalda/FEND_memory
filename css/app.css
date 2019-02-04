@@ -28,7 +28,7 @@ body {
 }
 
 h1 {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 /*
@@ -99,6 +99,11 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+}
+
+.timer {
+    text-align: center;
+    font-size: 40px;
 }
 
 .score-panel .restart {
