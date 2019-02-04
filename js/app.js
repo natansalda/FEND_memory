@@ -169,6 +169,29 @@ function stopTimer() {
     clearInterval(timerId);
 }
 
+function showPopup() {
+    const popup = document.querySelector('.popup_background');
+    popup.classList.toggle('hide');
+}
+time = 121;
+updateTime();
+moves = 16;
+hideOneStar();
+
+addResultsToPopup();
+showPopup();
+
+function addResultsToPopup() {
+    const timeResult = document.querySelector('.popup_time');
+    const endTime = document.querySelector('.timer').innerHTML;
+    timeResult = "Time: " + endTime;
+}
+
+function cancelPopup() {
+    const cancelButton = document.querySelector('.button_cancel');
+    showPopup();
+}
+
 // start whole game again when the reset is clicked
 const shuffleButton = document.querySelector('.restart');
 shuffleButton.addEventListener('click', event => {
