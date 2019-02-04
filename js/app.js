@@ -1,8 +1,4 @@
-function startGame() {
-
-}
-startGame();
-
+// variables
 // a list that holds all opened cards
 let flippedCards = [];
 
@@ -13,6 +9,8 @@ let moves = 0;
 let timerOff = true;
 
 let time = 0;
+let minutes = 0;
+let timerId;
 
 // we save a deck into a variable
 const deck = document.querySelector('.deck');
@@ -20,10 +18,19 @@ const deck = document.querySelector('.deck');
 // we save an array of cards to shuffle into a variable
 const cardsInDeck = Array.from(document.querySelectorAll('.card'));
 
+// function to start and reset game
+function startGame() {
+    let time = 0;
+    let minutes = 0;
+    let moves = 0;
+    shuffleCards();
+    updateTime();
+}
+startGame();
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -42,7 +49,6 @@ function shuffleCards() {
         deck.appendChild(card);
     }
 }
-shuffleCards()
 
 // we add listener to all cards in the deck
 deck.addEventListener('click', event => {
@@ -138,7 +144,7 @@ function hideOneStar() {
 
 // function for a timer
 function startTimer() {
-    let timerId = setInterval(() => {
+    timerId = setInterval(() => {
         time++;
         updateTime();
         }, 1000);
@@ -146,42 +152,30 @@ function startTimer() {
 
 function updateTime() {
      const timerDisplayed = document.querySelector('.timer');
-     timerDisplayed.innerHTML = time;
+     if (time < 10) {
+     timerDisplayed.innerHTML = minutes + ":0" + time;
+     } else if (time < 60) {
+     timerDisplayed.innerHTML = minutes + ":" + time;
+     } else if (time == 60) {
+     minutes++;
+     time = 0;
+     timerDisplayed.innerHTML = minutes + ":0" + time;
+     } else if (time > 60) {
+     timerDisplayed.innerHTML = minutes + ":" + time;
+     }
 }
-/*
- * shuffle the cards when the user clicks shuffle button
- */
+
+function stopTimer() {
+    clearInterval(timerId);
+}
+
+// start whole game again when the reset is clicked
 const shuffleButton = document.querySelector('.restart');
-shuffleButton.addEventListener('click', shuffleCards());
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-//function eventFunction() {
-//    const itemClicked = event.target;
-//	    if (itemClicked.classList.contains('.card')) {
-//		    console.log("You have clicked the card!");
-//};
-//const deck = document.querySelectorAll('.deck');
-//deck.addEventListener('click', eventFunction);
-
-
-
-
-// When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. 
-// It should also tell the user how much time it took to win the game, and what the star rating was.
-
-
-// The game displays a star rating (from 1 to at least 3) that reflects the player's performance. 
-// At the beginning of a game, it should display at least 3 stars. After some number of moves, it should change to a lower star rating. 
-// After a few more moves, it should change to a even lower star rating (down to 1). Game displays the current number of moves a user has made.
-
-// When the player starts a game, a displayed timer should also start. Once the player wins the game, the timer stops.
+shuffleButton.addEventListener('click', event => {
+    stopTimer();
+    let time = 0;
+    let minutes = 0;
+    startTimer() ;
+    console.log(time);
+    shuffleCards();
+    });
