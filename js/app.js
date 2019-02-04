@@ -9,6 +9,11 @@ let flippedCards = [];
 // a variable holding number of moves
 let moves = 0;
 
+// variable making sure we don't start the clock right away when opening the website
+let timerOff = true;
+
+let time = 0;
+
 // we save a deck into a variable
 const deck = document.querySelector('.deck');
 
@@ -44,6 +49,11 @@ deck.addEventListener('click', event => {
     // and now we add the logic when card is clicked
     const elementClicked = event.target;
     if (isProperClick(elementClicked)) {
+        // let's first start the clock
+        if (timerOff) {
+            startTimer();
+            timerOff = false;
+        }
         flipCard(elementClicked);
         addFlippedCard(elementClicked);
         // now it is time to check if our 2 cards match each other
@@ -126,6 +136,18 @@ function hideOneStar() {
     }
 }
 
+// function for a timer
+function startTimer() {
+    let timerId = setInterval(() => {
+        time++;
+        updateTime();
+        }, 1000);
+}
+
+function updateTime() {
+     const timerDisplayed = document.querySelector('.timer');
+     timerDisplayed.innerHTML = time;
+}
 /*
  * shuffle the cards when the user clicks shuffle button
  */
