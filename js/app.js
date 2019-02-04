@@ -1,5 +1,13 @@
+function startGame() {
+
+}
+startGame();
+
 // a list that holds all opened cards
 let flippedCards = [];
+
+// a variable holding number of moves
+let moves = 0;
 
 // we save a deck into a variable
 const deck = document.querySelector('.deck');
@@ -41,6 +49,8 @@ deck.addEventListener('click', event => {
         // now it is time to check if our 2 cards match each other
         if (flippedCards.length === 2) {
             checkCardsMatch(elementClicked);
+            // add a move to move counter
+            addMovesNumber();
         }
     }
 });
@@ -89,6 +99,13 @@ function checkCardsMatch() {
         }, 1000);
      }
 }
+
+function addMovesNumber() {
+    moves++;
+    const numberOfMovesText = document.querySelector('.moves');
+    numberOfMovesText.innerHTML = moves;
+}
+
 
 /*
  * shuffle the cards when the user clicks shuffle button
