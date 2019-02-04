@@ -166,6 +166,22 @@ h1 {
     height: 30px;
 }
 
+.popup_stars {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.fa-star li {
+    float: center;
+}
+
+li i {
+  display: inline;
+  text-align: center;
+}
+
 .hide {
     display: none;
 }

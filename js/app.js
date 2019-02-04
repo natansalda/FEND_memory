@@ -184,13 +184,19 @@ showPopup();
 function addResultsToPopup() {
     const timeResult = document.querySelector('.popup_time');
     const endTime = document.querySelector('.timer').innerHTML;
-    timeResult = "Time: " + endTime;
+    const movesResult = document.querySelector('.popup_moves');
+    const starsResult = document.querySelector('.popup_stars');
+    const endStars = document.querySelector('.stars').innerHTML;
+
+    timeResult.innerHTML = "Time: " + endTime;
+    movesResult.innerHTML = "Moves: " + moves;
+    starsResult.innerHTML = "You got: " + endStars;
+    console.log(endStars);
 }
 
-function cancelPopup() {
-    const cancelButton = document.querySelector('.button_cancel');
+document.querySelector('.popup_cancel').addEventListener('click', () => {
     showPopup();
-}
+});
 
 // start whole game again when the reset is clicked
 const shuffleButton = document.querySelector('.restart');
