@@ -12,6 +12,12 @@ let time = 0;
 let minutes = 0;
 let timerId;
 
+// variable keeping the value of matched pairs
+let pairs = 0;
+
+// const variable telling how many pairs we need to win the game
+const MAX_PAIRS = 8;
+
 // we save a deck into a variable
 const deck = document.querySelector('.deck');
 
@@ -23,10 +29,12 @@ const timerDisplayed = document.querySelector('.timer');
 
 // function to start and reset game
 function startGame() {
-    let time = 0;
-    let minutes = 0;
-    let moves = 0;
+    time = 0;
+    minutes = 0;
+    moves = 0;
+    pairs = 0;
     shuffleCards();
+    showBackOfCards();
     timerDisplayed.innerHTML = "0:00";
 }
 startGame();
@@ -51,6 +59,13 @@ function shuffleCards() {
     // we append newly shuffled cards to the deck
     for (card of shuffledCards) {
         deck.appendChild(card);
+    }
+}
+
+function showBackOfCards() {
+    const cards = document.querySelectorAll('.deck li');
+    for (let card of cards) {
+        card.classList = 'card';
     }
 }
 
@@ -111,6 +126,10 @@ function checkCardsMatch() {
         flippedCards[1].classList.toggle('match');
         // and we clear the list
         flippedCards = []
+        pairs++;
+        if (pairs === MAX_PAIRS) {
+            endGame();
+        }
     } else {
         // to see both cards we need to setTimeOut
         setTimeout(() => {
@@ -189,9 +208,6 @@ function addResultsToPopup() {
     starsResult.innerHTML = "You got: " + endStars;
 }
 
-addResultsToPopup();
-showPopup();
-
 document.querySelector('.popup_close').addEventListener('click', () => {
     showPopup();
 });
@@ -201,17 +217,39 @@ document.querySelector('.button_cancel').addEventListener('click', () => {
 });
 
 document.querySelector('.button_replay').addEventListener('click', () => {
-    startGame();
+    resetGame();
     showPopup();
 });
+
+document.querySelector('.restart').addEventListener('click', resetGame);
+
+function resetGame() {
+    timerOff = true;
+    time = 0;
+    moves = 0;
+    pairs = 0;
+    document.querySelector('.moves').innerHTML = moves;
+    stars = 0;
+    const starsList = document.querySelectorAll('.stars li');
+    for (star of starsList) {
+        star.style.display = 'inline';
+    }
+    stopTimer();
+    updateTime();
+    shuffleCards();
+    showBackOfCards();
+}
 
 // start whole game again when the reset is clicked
 const shuffleButton = document.querySelector('.restart');
 shuffleButton.addEventListener('click', event => {
     stopTimer();
-    let time = 0;
-    let minutes = 0;
-    startTimer();
-    console.log(time);
-    shuffleCards();
+    startGame();
 });
+
+function endGame() {
+    stopTimer();
+    addResultsToPopup();
+    showPopup();
+    showBackOfCards();
+}
