@@ -31,6 +31,7 @@ h1 {
     font-weight: 500;
 }
 
+
 /*
  * Styles for the deck of cards
  */
@@ -79,6 +80,7 @@ h1 {
     font-size: 33px;
 }
 
+
 /*
  * Styles for the Score Panel
  */
@@ -111,27 +113,28 @@ h1 {
     cursor: pointer;
 }
 
+
 /*
  * Styles for pop-up window
  */
 
 .popup_background {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .popup_body {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 3px solid #009900;
-  width: 30%;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 3px solid #009900;
+    width: 30%;
 }
 
 .popup_heading {
@@ -178,8 +181,8 @@ h1 {
 }
 
 li i {
-  display: inline;
-  text-align: center;
+    display: inline;
+    text-align: center;
 }
 
 .hide {

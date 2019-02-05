@@ -30,7 +30,8 @@ startGame();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -79,8 +80,8 @@ function isProperClick(elementClicked) {
         elementClicked.classList.contains('card') &&
         // let's make sure we don't count already matched cards
         !elementClicked.classList.contains('match') &&
-         // we only want 2 flipped cards at a time and those needs to be 2 different cards
-         flippedCards.length < 2 && !flippedCards.includes(elementClicked)
+        // we only want 2 flipped cards at a time and those needs to be 2 different cards
+        flippedCards.length < 2 && !flippedCards.includes(elementClicked)
     );
 }
 
@@ -115,7 +116,7 @@ function checkCardsMatch() {
             flipCard(flippedCards[1]);
             flippedCards = [];
         }, 1000);
-     }
+    }
 }
 
 function countMovesNumber() {
@@ -147,22 +148,22 @@ function startTimer() {
     timerId = setInterval(() => {
         time++;
         updateTime();
-        }, 1000);
+    }, 1000);
 }
 
 function updateTime() {
-     const timerDisplayed = document.querySelector('.timer');
-     if (time < 10) {
-     timerDisplayed.innerHTML = minutes + ":0" + time;
-     } else if (time < 60) {
-     timerDisplayed.innerHTML = minutes + ":" + time;
-     } else if (time == 60) {
-     minutes++;
-     time = 0;
-     timerDisplayed.innerHTML = minutes + ":0" + time;
-     } else if (time > 60) {
-     timerDisplayed.innerHTML = minutes + ":" + time;
-     }
+    const timerDisplayed = document.querySelector('.timer');
+    if (time < 10) {
+        timerDisplayed.innerHTML = minutes + ":0" + time;
+    } else if (time < 60) {
+        timerDisplayed.innerHTML = minutes + ":" + time;
+    } else if (time == 60) {
+        minutes++;
+        time = 0;
+        timerDisplayed.innerHTML = minutes + ":0" + time;
+    } else if (time > 60) {
+        timerDisplayed.innerHTML = minutes + ":" + time;
+    }
 }
 
 function stopTimer() {
@@ -173,13 +174,6 @@ function showPopup() {
     const popup = document.querySelector('.popup_background');
     popup.classList.toggle('hide');
 }
-time = 121;
-updateTime();
-moves = 16;
-hideOneStar();
-
-addResultsToPopup();
-showPopup();
 
 function addResultsToPopup() {
     const timeResult = document.querySelector('.popup_time');
@@ -191,10 +185,21 @@ function addResultsToPopup() {
     timeResult.innerHTML = "Time: " + endTime;
     movesResult.innerHTML = "Moves: " + moves;
     starsResult.innerHTML = "You got: " + endStars;
-    console.log(endStars);
 }
 
-document.querySelector('.popup_cancel').addEventListener('click', () => {
+addResultsToPopup();
+showPopup();
+
+document.querySelector('.popup_close').addEventListener('click', () => {
+    showPopup();
+});
+
+document.querySelector('.button_cancel').addEventListener('click', () => {
+    showPopup();
+});
+
+document.querySelector('.button_replay').addEventListener('click', () => {
+    startGame();
     showPopup();
 });
 
@@ -204,7 +209,7 @@ shuffleButton.addEventListener('click', event => {
     stopTimer();
     let time = 0;
     let minutes = 0;
-    startTimer() ;
+    startTimer();
     console.log(time);
     shuffleCards();
-    });
+});
