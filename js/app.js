@@ -18,13 +18,16 @@ const deck = document.querySelector('.deck');
 // we save an array of cards to shuffle into a variable
 const cardsInDeck = Array.from(document.querySelectorAll('.card'));
 
+// we save timer display to a variable
+const timerDisplayed = document.querySelector('.timer');
+
 // function to start and reset game
 function startGame() {
     let time = 0;
     let minutes = 0;
     let moves = 0;
     shuffleCards();
-    updateTime();
+    timerDisplayed.innerHTML = "0:00";
 }
 startGame();
 
@@ -152,7 +155,6 @@ function startTimer() {
 }
 
 function updateTime() {
-    const timerDisplayed = document.querySelector('.timer');
     if (time < 10) {
         timerDisplayed.innerHTML = minutes + ":0" + time;
     } else if (time < 60) {
