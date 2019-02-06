@@ -1,4 +1,4 @@
-# Memory Game Project
+# Memory Game Project  - description from UDACITY
 
 ## Table of Contents
 
@@ -18,3 +18,14 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Project dependencies - author: Natalia Nazaruk (natansalda)
+
+The game is written in JavaScript, HTML and CSS. 
+
+I have also used: 
+1. [Font awesome] (https://origin.fontawesome.com/)
+2. [Bootstrap] (https://getbootstrap.com/)
+3. [Google fonts] (https://fonts.google.com/)
+
+
